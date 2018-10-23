@@ -1,5 +1,3 @@
-cloud=0
-cloud2=120
 bear_movement=768
 a=0
 h=0
