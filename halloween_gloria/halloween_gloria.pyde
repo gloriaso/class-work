@@ -4,12 +4,24 @@ def setup():
     global ghost
     global fence
     global bat
+    global caution_tape
+    global spider_web
+    global zombie
+    global skeleton
     tree=loadImage("tree.png")
     ghost=loadImage("ghost.png")
     ghost.resize(120,130)
     fence=loadImage("fence.png")
     bat=loadImage("bat.png")
     bat.resize(60,96)
+    caution_tape=loadImage("cautiontape.png")
+    caution_tape.resize(100,60)
+    spider_web=loadImage("spiderweb.png")
+    spider_web.resize(80,80)
+    zombie=loadImage("zombie.png")
+    zombie.resize(110,185)
+    skeleton=loadImage("skeleton.png")
+    skeleton.resize(100,140)
 
 
 cloud1=100
@@ -17,6 +29,8 @@ cloud2=500
 ghost1_pos=0
 ghost2_pos=-400
 bat_xpos=768
+zombie_pos=-20
+skeleton_pos=450
 
 
 def draw():
@@ -67,13 +81,13 @@ def draw():
 
     #grass
     fill(8,92,54)
-    ellipse(width/2,height+50,width+100,200)
+    ellipse(width/2,height+10,width+150,200)
     
     #ghost
     global ghost1_pos
     global ghost2_pos
     tint(255,255,255,100)
-    image(ghost,ghost1_pos,250)
+    image(ghost,ghost1_pos,240)
     if ghost1_pos >=800:
         ghost1_pos=-200
     ghost1_pos+=1.5
@@ -83,12 +97,14 @@ def draw():
         ghost2_pos=-200
     ghost2_pos+=1.7
         
-    
-    
-    #tree
-    tint(0)
-    image(tree,0,0,400,600)
-    
+    #skeleton
+    tint(255)
+    global skeleton_pos
+    image(skeleton,skeleton_pos,410)
+    if skeleton_pos<=-300:
+        skeleton_pos=450
+    skeleton_pos-=1.2
+
     #haunted house
     fill(0)
     triangle(500,200,420,280,580,280)
@@ -105,6 +121,34 @@ def draw():
     line(500,400,500,550)
     line(475,430,525,430)
     
+    #fence
+    image(fence,300,435)
+    
+    #bat
+    global bat_xpos
+    image(bat,bat_xpos,60)
+    if bat_xpos<=-200:
+        bat_xpos=800
+    bat_xpos-=3
+    
+    #caution tape
+    tint(255)
+    image(caution_tape,450,280)
+    
+    #spider web
+    image(spider_web,460,380)
+    
+    #zombie
+    global zombie_pos
+    image(zombie,zombie_pos,380)
+    if zombie_pos>=800:
+        zombie_pos=-200
+    zombie_pos+=1
+    
+    #tree
+    tint(0)
+    image(tree,0,0,400,600)
+    
     #pumpkin
     noStroke()
     fill(65,102,6)
@@ -115,15 +159,8 @@ def draw():
     triangle(305,295,295,310,315,310)
     triangle(335,295,325,310,345,310)
     
-    #fence
-    image(fence,300,450)
     
-    #bat
-    global bat_xpos
-    image(bat,bat_xpos,60)
-    if bat_xpos<=-200:
-        bat_xpos=800
-    bat_xpos-=3
+    
     
     
     
